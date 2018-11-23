@@ -5,8 +5,8 @@
   <parent>
     <groupId>org.camunda</groupId>
     <artifactId>camunda-release-parent</artifactId>
-    <version>2.5</version>
-    <relativePath />
+    <version>3.1</version>
+    <relativePath/>
   </parent>
 
   <name>camunda BPM - Apache Camel Integration</name>
@@ -16,7 +16,7 @@
   <packaging>pom</packaging>
 
   <properties>
-    <camunda-bpm.version>7.6.0</camunda-bpm.version>
+    <camunda-bpm.version>7.10.0</camunda-bpm.version>
     <camel.version>2.17.1</camel.version>
     <spring.framework.version>4.0.7.RELEASE</spring.framework.version>
     <fest.assert.version>2.0M10</fest.assert.version>
@@ -106,25 +106,9 @@
 
   <repositories>
     <repository>
-      <id>jboss-public-repository</id>
-      <name>JBoss Repository</name>
-      <url>http://repository.jboss.org/nexus/content/groups/public</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
-    <repository>
-      <id>apache-releases</id>
-      <url>https://repository.apache.org/content/repositories/releases/</url>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
+      <id>camunda-bpm-nexus</id>
+      <name>camunda-bpm-nexus</name>
+      <url>https://app.camunda.com/nexus/content/groups/public</url>
     </repository>
   </repositories>
 
