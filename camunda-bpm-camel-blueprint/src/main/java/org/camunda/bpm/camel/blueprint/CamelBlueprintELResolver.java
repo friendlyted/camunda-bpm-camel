@@ -6,7 +6,6 @@ import org.camunda.bpm.engine.impl.javax.el.ELContext;
 import org.camunda.bpm.extension.osgi.blueprint.BlueprintELResolver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 
 public class CamelBlueprintELResolver extends BlueprintELResolver {
 
@@ -41,7 +40,7 @@ public class CamelBlueprintELResolver extends BlueprintELResolver {
 				paramClasses[i] = params[i].getClass();
 			}
 			try {
-				Method m = BeanUtils.findMethod(camelService.getClass(), (String)method, paramClasses);
+				Method m = findMethod(camelService.getClass(), (String)method, paramClasses);
 				if (m == null) {
 					LOGGER.warn("Failed to find method: " + method + " on " + base.getClass() + " with parameters: " + p.toString());
 					context.setPropertyResolved(false);
@@ -65,6 +64,27 @@ public class CamelBlueprintELResolver extends BlueprintELResolver {
 			camelService = new CamelServiceImpl();
 		}
 		return camelService;
+	}
+
+	public static Method findMethod(Class<?> clazz, String methodName, Class<?>... paramTypes) {
+		try {
+			return clazz.getMethod(methodName, paramTypes);
+		}
+		catch (NoSuchMethodException ex) {
+			return findDeclaredMethod(clazz, methodName, paramTypes);
+		}
+	}
+
+	public static Method findDeclaredMethod(Class<?> clazz, String methodName, Class<?>... paramTypes) {
+		try {
+			return clazz.getDeclaredMethod(methodName, paramTypes);
+		}
+		catch (NoSuchMethodException ex) {
+			if (clazz.getSuperclass() != null) {
+				return findDeclaredMethod(clazz.getSuperclass(), methodName, paramTypes);
+			}
+			return null;
+		}
 	}
 
 }
