@@ -15,12 +15,6 @@
     <dependency>
       <groupId>org.camunda.bpm.extension.camel</groupId>
       <artifactId>camunda-bpm-camel-common</artifactId>
-      <exclusions>
-      	<exclusion>
-      		<artifactId>spring-beans</artifactId>
-      		<groupId>org.springframework</groupId>
-      	</exclusion>
-      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.camunda.bpm</groupId>
@@ -167,7 +161,7 @@
           <failIfNoTests>true</failIfNoTests>
           <trimStackTrace>false</trimStackTrace>
           <redirectTestOutputToFile>true</redirectTestOutputToFile>
-          <argLine>-Djava.awt.headless=true -Xmx256m</argLine>
+          <argLine>-Djava.awt.headless=true -Xmx512m</argLine>
         </configuration>
       </plugin>
     </plugins>
