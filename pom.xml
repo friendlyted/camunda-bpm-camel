@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
 
@@ -17,7 +18,7 @@
 
   <properties>
     <camunda-bpm.version>7.10.0</camunda-bpm.version>
-    <camel.version>2.22.2</camel.version>
+    <camel.version>2.23.0</camel.version>
     <spring.framework.version>5.0.10.RELEASE</spring.framework.version>
     <fest.assert.version>2.0M10</fest.assert.version>
     <sl4j.version>1.6.1</sl4j.version>
@@ -29,10 +30,9 @@
 
   <modules>
     <module>camunda-bpm-camel-common</module>
-    <module>camunda-bpm-camel-common-tests</module>
     <module>camunda-bpm-camel-spring</module>
-    <module>camunda-bpm-camel-cdi</module>
     <module>camunda-bpm-camel-blueprint</module>
+    <module>camunda-bpm-camel-itests</module>
   </modules>
 
   <dependencyManagement>
@@ -70,37 +70,37 @@
       </plugin>
     </plugins>
     <pluginManagement>
-    	<plugins>
-    		<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
-    		<plugin>
-    			<groupId>org.eclipse.m2e</groupId>
-    			<artifactId>lifecycle-mapping</artifactId>
-    			<version>1.0.0</version>
-    			<configuration>
-    				<lifecycleMappingMetadata>
-    					<pluginExecutions>
-    						<pluginExecution>
-    							<pluginExecutionFilter>
-    								<groupId>org.apache.felix</groupId>
-    								<artifactId>
-    									maven-bundle-plugin
-    								</artifactId>
-    								<versionRange>
-    									[2.5.3,)
-    								</versionRange>
-    								<goals>
-    									<goal>cleanVersions</goal>
-    								</goals>
-    							</pluginExecutionFilter>
-    							<action>
-    								<execute />
-    							</action>
-    						</pluginExecution>
-    					</pluginExecutions>
-    				</lifecycleMappingMetadata>
-    			</configuration>
-    		</plugin>
-    	</plugins>
+      <plugins>
+        <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+        <plugin>
+          <groupId>org.eclipse.m2e</groupId>
+          <artifactId>lifecycle-mapping</artifactId>
+          <version>1.0.0</version>
+          <configuration>
+            <lifecycleMappingMetadata>
+              <pluginExecutions>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.apache.felix</groupId>
+                    <artifactId>
+                      maven-bundle-plugin
+                    </artifactId>
+                    <versionRange>
+                      [2.5.3,)
+                    </versionRange>
+                    <goals>
+                      <goal>cleanVersions</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <execute/>
+                  </action>
+                </pluginExecution>
+              </pluginExecutions>
+            </lifecycleMappingMetadata>
+          </configuration>
+        </plugin>
+      </plugins>
     </pluginManagement>
   </build>
 

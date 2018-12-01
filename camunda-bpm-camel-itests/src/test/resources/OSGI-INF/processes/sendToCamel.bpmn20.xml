@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:activiti="http://activiti.org/bpmn" targetNamespace="Examples" exporter="Camunda Modeler" exporterVersion="1.16.2" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <process id="sendToCamelProcess" isExecutable="true">
+    <startEvent id="start">
+      <outgoing>flow1</outgoing>
+    </startEvent>
+    <sequenceFlow id="flow1" sourceRef="start" targetRef="sendToCamelServiceTask" />
+    <serviceTask id="sendToCamelServiceTask" name="Send to Camel" activiti:expression="${camel.sendTo(&#39;direct:sendToCamelStartDirect&#39;)}" activiti:resultVariableName="message">
+      <incoming>flow1</incoming>
+      <outgoing>flow2</outgoing>
+    </serviceTask>
+    <sequenceFlow id="flow2" sourceRef="sendToCamelServiceTask" targetRef="end" />
+    <endEvent id="end">
+      <incoming>flow2</incoming>
+    </endEvent>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_camelProcess">
+    <bpmndi:BPMNPlane id="BPMNPlane_camelProcess" bpmnElement="sendToCamelProcess">
+      <bpmndi:BPMNShape id="BPMNShape_start" bpmnElement="start">
+        <omgdc:Bounds x="40" y="143" width="35" height="35" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_serviceTask1" bpmnElement="sendToCamelServiceTask">
+        <omgdc:Bounds x="140" y="130" width="100" height="60" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_end" bpmnElement="end">
+        <omgdc:Bounds x="329" y="143" width="35" height="35" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="497" y="182" width="0" height="0" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_flow2" bpmnElement="flow2" targetElement="BPMNShape_end">
+        <omgdi:waypoint x="240" y="160" />
+        <omgdi:waypoint x="329" y="161" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="280" y="160" width="0" height="0" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_flow1" bpmnElement="flow1">
+        <omgdi:waypoint x="75" y="160" />
+        <omgdi:waypoint x="140" y="160" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
